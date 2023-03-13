@@ -24,7 +24,14 @@
   - API는 클라이언트쪽이나 다른 서버쪽에 html를 보내는게 아니라 데이터, 객체를 보내는거야.
 
 #### 서블릿
-- **클라이언트쪽에서 보내는 요청 메시지의 종류는 크게 3가지만 구분해서 처리하며 돼.**
-  - get 쿼리파라미터로 보내는 경우
-  - html form 으로 submit 하는 경우. 쿼리파라미터 형태의 데이터가 http 바디에 담겨져서 보내짐.
-  - http api로 보내는 경우. http message body에 직접 데이터를 담아 보냄. 주로 json 형식.
+- **클라이언트쪽에서 보내는 http 요청 메시지의 종류는 크게 3가지**
+  - 1. get 쿼리파라미터로 보내는 경우. uri에 ? 다음으로 쿼리 넣어서 보내는거.
+  - 2. html form 으로 submit 하는 경우. 쿼리파라미터 형태의 데이터가 http 바디에 담겨져서 보내짐.
+  - 3. http api로 보내는 경우. http message body에 직접 데이터를 담아 보냄. 주로 json 형식.
+   - 1과 2는 request.getParameter("username") 를 통해 value 가져올 수 있음.
+   - 3은 jackson 라이브러리를 사용, objectMapper를 통해 string을 내가 만든 클래스 객체에 매핑시킬 수 있음
+- http 응답 메시지
+  - 넘길 content로는 단순 text, html, api 세가지 보낼 수 있어.
+  - 그밖에 상태코드나, 인코딩방식, 여러가지 헤더값들을 지정해서 보낼 수 있음.
+  - 주로 api 보낼텐데, 내가 만든 클래스 객체를 역시 objectMapper를 통해 json형태의 string 타입으로 변환해서 전달.
+  
