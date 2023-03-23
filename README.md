@@ -50,7 +50,10 @@
 -->
 
 #### 스프링 MVC - 구조 이해
-- 비고
+<img width="878" alt="스크린샷 2023-03-23 오후 6 23 58" src="https://user-images.githubusercontent.com/93418349/227159133-00b3cb80-37e6-422d-a61d-23ae3fb4f3bb.png">
+<img width="901" alt="스크린샷 2023-03-23 오후 6 24 06" src="https://user-images.githubusercontent.com/93418349/227159189-dd9f205d-0d27-4da0-a1b8-faa9cbbe274e.png">
+
+
 
 #### 스프링 MVC - 기본 기능
 - 비고
