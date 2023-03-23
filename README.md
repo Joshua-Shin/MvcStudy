@@ -56,8 +56,16 @@
 
 
 #### 스프링 MVC - 기본 기능
-- 비고
-
+- @RequestMapping : DispatcherServlet이 핸들러매핑정보와 핸들러어댑터매핑정보를 확인하여 이에 대응되는 핸들러를 호출하게 해주는 url를 지정할 수 있음.
+  - 메소드 레벨에서 지정하며, 해당 메소드들을 담은 클래스에는 @Controller를 선언하고 있음. 이는 @Component도 포함된 어노테이션으로 스프링 빈 등록을 가능케 해줌.
+    - @RestController : @Controller에서는 반환하는 문자열이 viewname으로 전달되지만. 얘는 응답 바디에다가 해당 문자열을 바로 넣어 응답함. 
+  - @GetMapping, @PostMappint ... : http 메소드를 더 분명히 명시하여 지정함.
+  - @RequestParam : 서블릿request로 인자를 얻어오는게 아니라, 간단히 인자값을 가져올 수 있음
+  - @PathVariable : url에 {}로 들어온 값들을 가져올 수 있음.
+  - 그밖에 쿼리, 헤더타입 등등을 제한시켜서 해당 타입과 매칭되지 않으면 오류를 발생시키는 기능들도 세세하게 있긴 함.
+- @Slf4j : 클래스레벨에 선언. 로그 출력하는 인스턴스 log 만들어줌
+  - 실무에서는 println으로 하는게 아니라, 로그를 찍어야함. 로그에는 쓰래드명, 클래스명, 시각, 이런것들이 다 담겨있음.
+  - slf4j는 인터페이스, 이의 구현체가 logback임. Logger log = Logger.getLogger(getClass()) 뭐 이리 해서 log을 주입받는데, 해당 에노테이션으로 간단히 해결
 #### 스프링 MVC - 웹 페이지 만들기
 - 비고
 
