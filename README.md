@@ -66,6 +66,14 @@
 - @Slf4j : 클래스레벨에 선언. 로그 출력하는 인스턴스 log 만들어줌
   - 실무에서는 println으로 하는게 아니라, 로그를 찍어야함. 로그에는 쓰래드명, 클래스명, 시각, 이런것들이 다 담겨있음.
   - slf4j는 인터페이스, 이의 구현체가 logback임. Logger log = Logger.getLogger(getClass()) 뭐 이리 해서 log을 주입받는데, 해당 에노테이션으로 간단히 해결
+- 클라이언트쪽에서 보내는 http 요청 메시지 유형 3가지에 따른 요청 파라미터 대응 방법
+  - get으로 url에 쿼리 보낼때 & html form 으로 post 할때.
+    - 핸들러 메소드의 인자로 @RequestParam을 지정하여 해당 키에 따른 값을 받는다. 요청 파라미터의 이름과 메소드 매개변수의 이름을 동일하게 하면 @RequestParam 도 생략 가능
+    - 핸들러 메소드의 인자로 @ModelAttribule를 지정하면 메소드 매개변수인 객체의 필드에 자동으로 바인딩됨. 바인딩에 오류가 없으려면 객체의 필드이름과 타입이 요청파라미터와 맞아야 되고, getter, setter 있어야함. @ModelAttribule도 생략 가능. 
+    - 생략했을때, 메소드의 매개변수 타입이 int, String 이런 기본값이라면 @RequestParam으로 작동되고, 내가 만든 객체라면 @ModelAttribute로 작동함.
+  - post인데 메시지바디에 메시지를 담아 보낼때.
+    - 핸들러 메소드의 인자로 @RequestBody String messageBody를 명시하면 http 메시지의 body 내용이 그냥 바로 문자열로 컨버팅되어서 들어가짐.
+    - 메소드 레벨에 @ResponseBody 달면, return 하는 문자열이 view조회를 안하고 바로 응답 http 메시지 바디에 바로 들어가짐. 
 #### 스프링 MVC - 웹 페이지 만들기
 - 비고
 
