@@ -58,7 +58,9 @@
 #### 스프링 MVC - 기본 기능
 - @RequestMapping : DispatcherServlet이 핸들러매핑정보와 핸들러어댑터매핑정보를 확인하여 이에 대응되는 핸들러를 호출하게 해주는 url를 지정할 수 있음.
   - 메소드 레벨에서 지정하며, 해당 메소드들을 담은 클래스에는 @Controller를 선언하고 있음. 이는 @Component도 포함된 어노테이션으로 스프링 빈 등록을 가능케 해줌.
-    - @RestController : @Controller에서는 반환하는 문자열이 viewname으로 전달되지만. 얘는 응답 바디에다가 해당 문자열을 바로 넣어 응답함. 
+    - @RestController
+      - @Controller에서는 반환하는 문자열이 viewname으로 전달되지만. 얘는 응답 바디에다가 해당 문자열을 바로 넣어 응답함. 
+      - 결국 @Controller + @ResponseBody 기능임. 실제 에노테이션 들어가면 그렇게 되어있음.
   - @GetMapping, @PostMappint ... : http 메소드를 더 분명히 명시하여 지정함.
   - @RequestParam : 서블릿request로 인자를 얻어오는게 아니라, 간단히 인자값을 가져올 수 있음
   - @PathVariable : url에 {}로 들어온 값들을 가져올 수 있음.
@@ -73,7 +75,22 @@
     - 생략했을때, 메소드의 매개변수 타입이 int, String 이런 기본값이라면 @RequestParam으로 작동되고, 내가 만든 객체라면 @ModelAttribute로 작동함.
   - post인데 메시지바디에 메시지를 담아 보낼때.
     - 핸들러 메소드의 인자로 @RequestBody String messageBody를 명시하면 http 메시지의 body 내용이 그냥 바로 문자열로 컨버팅되어서 들어가짐.
+    - 핸들러 메소드의 인자로 @RequestBody HelloData helloDate를 명시하면 http 메시지의 body 내용이 HelloData 객체 필드에 맞춰 바인딩됨.
     - 메소드 레벨에 @ResponseBody 달면, return 하는 문자열이 view조회를 안하고 바로 응답 http 메시지 바디에 바로 들어가짐. 
+- 클라이언트쪽으로 보내는 http 응답 메시지
+  - 정적페이지
+  - 동적페이지. 템플릿.
+  - http body 메시지.
+    - 메소드 레벨에다가 @ResponseBody 달거나, 클래스 레벨에다가 @RestController 해주거나.
+    - @ResponseBody 에서 객체를 바로 보내면 상태 코드를 따로 지정해서 보내기가 어려운데 이때 @ResponseStatus로 보내주면됨. 대신 고정값이겠지. 상태에따라 보낼려면 @ResponseBody쓰면 안돼
+- 핸들러가 굉장히 다양한 방식으로 요청을 받고 다양한 방식으로 응답을 하는데, 이걸 가능케 해주는게 핸들러 어댑터야.
+- 핸들러 어댑터에서 핸들러를 호출하고 값을 반환 받는 과정에 ArgumentResolver가 있는데 얘가 클래스와 컨텐츠타입을 잘 확인해서 이를 잘 처리할 수 있는 핸들러에게 보내주는거야. 그 과정에서 바디에 메시지가 들어가있으면 http메시지컨버터도 호출이 됨.
+- 핸들러 어댑터와 핸들러 사이의 작동 구조 <br>
+<img width="832" alt="스크린샷 2023-03-26 오후 8 47 21" src="https://user-images.githubusercontent.com/93418349/227773541-1b83a0e2-c6e0-4f48-aa57-5b061b1b7399.png">
+
+
+
+
 #### 스프링 MVC - 웹 페이지 만들기
 - 비고
 
