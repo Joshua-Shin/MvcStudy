@@ -93,11 +93,20 @@
 
 #### 스프링 MVC - 웹 페이지 만들기
 - 타임리프 문법 몇가지
-  - <html xmlns:th="http://www.thymeleaf.org">
-  - th:href="@{/css/bootstrap.min.css}"
-  - th:onclick="|location.href='@{/basic/items/add}'|"
-  - <tr th:each="item : ${items}">
-  - <td th:text="${item.price}">10000</td>
-  - th:href="@{/basic/items/{itemId}(itemId=${item.id})}"
-  - th:href="@{|/basic/items/${item.id}|}"
+   ```
+   <html xmlns:th="http://www.thymeleaf.org">
+   th:href="@{/css/bootstrap.min.css}"
+   th:onclick="|location.href='@{/basic/items/add}'|"
+   <tr th:each="item : ${items}">
+   <td th:text="${item.price}">10000</td>
+   th:href="@{/basic/items/{itemId}(itemId=${item.id})}"
+   th:href="@{/basic/items/{itemId}(itemId=${item.id}, query='test')}" 
+      => http://localhost:8080/basic/items/1?query=test
+   th:href="@{|/basic/items/${item.id}|}"
+   <h2 th:if="${param.status}" th:text="'저장 완료!'"></h2>
+   ```
+- @PostConstruct : 테스트용으로 데이터 init 느낌으로 넣어두는 메소드
+- html action : form data를 서버로 보낼때 도착할 url을 명시해줌.
+- @ModelAttribute: 이게 요청 파라미터를 객체로 받는것 뿐만 아니라, 클래스명의 앞글자를 소문자로 바꾼 이름을 키로 하는, model 기능을 하는 객체를 생성 저장해서 view에 넘겨줌
+- post 이후 리다이렉트 하는 이유: 새로고침하면 post 메소드가 또 실행되어버리니까, 메소드를 get으로 바꾸려면 리다이렉트로 리턴해줘야 함.
 
