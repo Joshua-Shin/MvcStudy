@@ -92,5 +92,12 @@
 
 
 #### 스프링 MVC - 웹 페이지 만들기
-- 비고
+- 타임리프 문법 몇가지
+  - <html xmlns:th="http://www.thymeleaf.org">
+  - th:href="@{/css/bootstrap.min.css}"
+  - th:onclick="|location.href='@{/basic/items/add}'|"
+  - <tr th:each="item : ${items}">
+  - <td th:text="${item.price}">10000</td>
+  - th:href="@{/basic/items/{itemId}(itemId=${item.id})}"
+  - th:href="@{|/basic/items/${item.id}|}"
 
