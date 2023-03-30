@@ -111,7 +111,26 @@
 - post 이후 리다이렉트 하는 이유: 새로고침하면 post 메소드가 또 실행되어버리니까, 메소드를 get으로 바꾸려면 리다이렉트로 리턴해줘야 함.
 
 -------------------
-목표
+#### 목표
 1. Spring MVC 구조 + 핸들러 어댑터와 핸들러 사이의 작동 구조 이해 & 암기.
 2. 3~7페이지에 있는 요구사항을 보고, 직접 구현. 단, view 쪽은 일단 복붙
+- 요구사항만 보고 직접 구현할때 주의할점
+  - gradle-groovy
+  - 도메인객체 -> repository -> repositoryTest ->  view & Controller 
+  - 백엔드 구현하는거니까 static html은 일단 복붙하고, 타임리프로 바꾸는건 직접하자.
+  - private static final Map<Long, Item> store = new HashMap<>();
+  - private static Long sequence = 0L;
+  - findAll 에서 new ArrayList<>(store.values());
+  - Test에서 Assertions.assertThat().isEqualTo() 로 검증.
+  - Test에서 Assertions.assertThat().contains(item1, item2)로 검증
+  - package이름에 ‘-‘ 같은 특수기호 들어가면 절대 안돼!!! 이것때문에 2시간 날림..
+  - controller 막 만들기 전에 URI 부터 설계하는게 좋아.
+  - 결국 Controller 구현의 핵심은 요청 URI와 응답할 html을 매핑해주고 적절한 model을 보내주는거야.
+  - @ModelAttribute는 기능상 생략할 수 있지만, 명시해두는게 좋은듯.
+  - static html을 먼저 만들어두고, 그것을 기반으로 controller와 동적 html을 만들어가는게 좋아.
+  - 타임리프에서 @{} ${} 이런거 쓸때, 리터럴 문자 표현 || 이거 주의하고.
+  - onclick=“location.href=‘ ‘ ”
+  - post 후에는 redirect 해주고. 
+  - redirect로 {itemId} 에 넣을 PathVariable로 가져온 id값이 없다면,
+    RedirectAttribute redirectAttribute 사용해서 리다이렉트 주소에 넣을 값을 addAttribute 해주면 돼.
 
