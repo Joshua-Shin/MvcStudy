@@ -25,9 +25,7 @@
     - 7_ 클 : 클라이언트쪽에서 html, js, api로 받은 데이터 잘 섞어서 화면 랜더링!
 
 #### 스프링 MVC - 구조 이해
-<img width="800" alt="스크린샷 2023-03-23 오후 6 23 58" src="https://user-images.githubusercontent.com/93418349/227159133-00b3cb80-37e6-422d-a61d-23ae3fb4f3bb.png">
-<img width="800" alt="스크린샷 2023-03-23 오후 6 24 06" src="https://user-images.githubusercontent.com/93418349/227159189-dd9f205d-0d27-4da0-a1b8-faa9cbbe274e.png">
-
+<img width="800" alt="스크린샷 2023-04-03 오후 2 20 38" src="https://user-images.githubusercontent.com/93418349/229418146-2be8ae62-5ddc-4c67-b765-3970f27ccd1c.png">
 
 #### 스프링 MVC - 기본 기능
 - 클라이언트쪽에서 보내는 http 요청 메시지 유형 3가지에 따른 요청 파라미터 대응 방법
